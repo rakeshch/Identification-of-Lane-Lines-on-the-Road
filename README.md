@@ -3,7 +3,7 @@
 In this project, I used Python and OpenCV to build a pipeline that detects lane lines on road images and eventually applying the pipeline to video (frames) that has roads with lane lines.
 
 Below are the steps involved in the pipeline:
-- 1.	Reading an image
+* 1.	Reading an image
 - 2.	Conversion of image to grayscale
 - 3.	Gaussian blur
 - 4.	Canny edge detection
