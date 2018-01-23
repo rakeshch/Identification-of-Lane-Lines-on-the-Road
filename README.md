@@ -79,8 +79,8 @@ A good read can be found [here](https://docs.opencv.org/2.4/modules/core/doc/ope
 Below are the final images with lane lines
 
 ## Potential shortcomings with my pipeline
-One potential shortcoming would be that the above pipeline works fine on straigh lines but issues are detected when there are curved lane lines or shadows on the road. 
+One potential shortcoming would be that the above pipeline works fine on straigh lines in the test_images but issues are detected when there are curved lane lines. 
 
 ## Suggest possible improvements to my pipeline
-A possible improvement would be to work on  an image that is masked to detect yellow and white lane lines before detecting edges, probably by converting RGB image to HSV space before converting to gray scale. Other possible improvement could be applying a different mask or tuning the cumulative average function before drawing lines.
+A possible improvement would be to work on  an image that is masked to detect yellow and white lane lines before detecting edges, probably by converting RGB image to another color space (HSV or HSL) before converting to gray scale. Other possible improvements could be creating a lane line classifier that identifies lane lines based on the predefined features for lane lines.
 
