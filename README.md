@@ -24,14 +24,14 @@ Once you read the image, convert the image to grayscale to simplify the image pr
 Below are the 2 images after going through this process:
 
 ## Gaussian Blur
-This step involves using Gaussian blur (smoothing) for edge detection. Most edge-detection algorithms are sensitive to noise and using Gaussian blur filter before edge detection aims to reduce the level of noise in the image, which improves the result of the following edge-detection algorithm. Later in our pipeline we use Canny edge detection algorithm which also applies Gaussian blur but we apply our own Gaussian blur to reduce the noise. 
+This step involves using Gaussian blur (smoothing) for edge detection. Most edge-detection algorithms are sensitive to noise and using Gaussian blur filter before edge detection aims to reduce the level of noise in the image, which improves the result of the following edge-detection algorithm. Canny edge detection (in next step) includes a Gaussian filter internally, but we also do it again for further smoothing or nose reduction. 
 
 Choose Kernel_size an odd number, larger kernel size implies averaging or smoothing over larger area. Based on my experiments, I have chosen Kernel size as 7.
 
 Below are the images after applying Gaussian blur to grayscale images:
 
 ## Canny Edge Detection
-Canny Edge Detection is a popular edge detection algorithm developed to detect edges in an image.  opencv.canny() includes a Gaussian filter internally, but we also di it again for further smoothing or nose reduction. Output of this process is a binary image with white pixels tracing out the detected edges (stromg gradient) and black everywhere else.
+Canny Edge Detection is a popular edge detection algorithm developed to detect edges in an image. Output of this process is a binary image with white pixels tracing out the detected edges (strong gradient) and black everywhere else.
 A nice read on Canny edge detection can be found [here](https://en.wikipedia.org/wiki/Canny_edge_detector)
 
 Canny recommendation for low threshold to high threshold a low to high ratio of 1:2 or 1:3. I have chosen 50 and 150 as low and high thresholds.
