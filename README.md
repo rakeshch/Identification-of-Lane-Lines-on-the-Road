@@ -25,6 +25,7 @@ Below are the 2 images after going through this process:
 
 ## Gaussian Blur
 This step involves using Gaussian blur (smoothing) for edge detection. Most edge-detection algorithms are sensitive to noise and using Gaussian blur filter before edge detection aims to reduce the level of noise in the image, which improves the result of the following edge-detection algorithm. Later in our pipeline we use Canny edge detection algorithm which also applies Gaussian blur but we apply our own Gaussian blur to reduce the noise. 
+
 Choose Kernel_size an odd number, larger kernel size implies averaging or smoothing over larger area. Based on my experiments, I have chosen Kernel size as 7.
 
 Below are the images after applying Gaussian blur to grayscale images:
@@ -44,8 +45,11 @@ Below are the images after  applying a quadrilateral mask to edge detected image
 
 ## Hough Line Transform
 With all the edges detected and selecting our region of interest to mark lanes, we can now use Hough Line Transform to detect straight lines.
-In image space, a line is plotted as x vs y as y=mx+b, here in hough space it is plotted as m vs b instead. A point in image space describes a line in Hogh space. So a line in an image is a point in Hough space
+
+In image space, a line is plotted as x vs y as y=mx+b, here in hough space it is plotted as m vs b instead. A point in image space describes a line in Hogh space. So a line in an image is a point in Hough space.
+
 With two kinds of Hough Line Transforms in OpenCV, we use Probabilistic Hough Line Transform, which is the more efficient implementation of the Hough Line Transform and gives as output the extremes of the detected lines (x0,y0,x1,y1). In OpenCV this is implemented with the function HoughLinesP. 
+
 This function takes multiple parameters as inputs and need to be tunes to get the desired output. See [opencv documentation](https://docs.opencv.org/2.4/modules/imgproc/doc/feature_detection.html?highlight=houghlinesp#houghlinesp) for a good read. 
 ``` 
 rho = 1 # distance resolution in pixels 
@@ -58,15 +62,10 @@ Once fine-tuned the parameters, you can now see the line segments on the images 
 
 ## Averaging line segments
 Once we have the Hough Transform image from the above step, our goal is to produce only two lines representing the left and right lanes. This can be done by averaging the lines detected on a lane line. We also need to extrapolate the line to cover full lane line length where the lane lines are partially recognized.
+
 We start by dividing the lines into two groups left and right, with left line having a negative slope and right line having a positive slope and adding weight to lines.
 
 Once we collect all the negative slope lines and positive slope lines, we can take an average to get the left and right line parameters to calculate x coordinates (left and right) using the equation x=(y-b/a)
-```
-x1_left = int((y_max-b_left)/a_left)
-x2_left = int((y_min-b_left)/a_left)
-x1_right = int((y_max-b_right)/a_right)
-x2_right = int((y_min-b_right)/a_right)
-```
 
 ## Drawing lines on lanes
 Once we have the entire x and y coordinates for left and right lanes from the above step, we can use opencv line function to draw lines on left and right lanes. 
@@ -83,5 +82,5 @@ Below are the final images with lane lines
 One potential shortcoming would be that the above pipeline works fine on straigh lines but issues are detected when there are curved lane lines or shadows on the road. 
 
 ## Suggest possible improvements to my pipeline
-A possible improvement would be to work on  an image that is masked to detect yellow and white lane lines before detecting edges, probably by converting RGB image to HSV space before converting to gray scale. Other possible improvements could be applying a different mask or tuning the cumulative average function in drawing lines.
+A possible improvement would be to work on  an image that is masked to detect yellow and white lane lines before detecting edges, probably by converting RGB image to HSV space before converting to gray scale. Other possible improvement could be applying a different mask or tuning the cumulative average function before drawing lines.
 
