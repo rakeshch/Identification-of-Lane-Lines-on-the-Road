@@ -79,5 +79,13 @@ A good read can be found [here](https://docs.opencv.org/2.4/modules/core/doc/ope
 
 Below are the final images with lane lines
 
+## [Potential shortcomings with my pipeline]
+One potential shortcoming would be that the above pipeline works fine on straigh lines but issues are detected when there are curved lane lines or shadows on the road. Other potential issues are 
 
+Another shortcoming could be ...
+
+## [Suggest possible improvements to your pipeline]
+A possible improvement would be to work on  an image that is masked to detect yellow and white lane lines, probably by converting RGB image to HSV space before converting to gray scale.
+
+Another potential improvement could be to ...
 
