@@ -82,6 +82,6 @@ Below are the final images with lane lines
 ## Potential shortcomings with my pipeline
 One potential shortcoming would be that the above pipeline works fine on straigh lines but issues are detected when there are curved lane lines or shadows on the road. 
 
-## Suggest possible improvements to your pipeline
+## Suggest possible improvements to my pipeline
 A possible improvement would be to work on  an image that is masked to detect yellow and white lane lines before detecting edges, probably by converting RGB image to HSV space before converting to gray scale. Other possible improvements could be applying a different mask or tuning the cumulative average function in drawing lines.
 
