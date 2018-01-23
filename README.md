@@ -3,37 +3,30 @@
 In this project, I used Python and OpenCV to build a pipeline that detects lane lines on road images and eventually applying the pipeline to video (frames) that has roads with lane lines.
 
 Below are the steps involved in the pipeline:
-1.	Reading an image
-2.	Conversion of image to grayscale
-3.	Gaussian blur
-4.	Canny edge detection
-5.	Region of Interest selection
-6.	Hough Line Transform
-7.	Averaging line segments
-8.	Drawing lines on lanes
-9.	Adding (Blending) images
+- 1.	Reading an image
+- 2.	Conversion of image to grayscale
+- 3.	Gaussian blur
+- 4.	Canny edge detection
+- 5.	Region of Interest selection
+- 6.	Hough Line Transform
+- 7.	Averaging line segments
+- 8.	Drawing lines on lanes
+- 9.	Adding (Blending) images
 
 ## Reading an image
 This step involves reading an image from the working directory
-``` 
-image =  mpimg.imread('test_images/solidWhiteRight.jpg')
-```
+
 Below are the 2 images I will be using for testing my code as I move forward in the pipeline:
 
 ## Conversion of image to grayscale
 Once you read the image, convert the image to grayscale to simplify the image processing. It is relatively easier to deal with a single color channel (shades of white/black) than multiple color channels. 
-``` 
-gray =  cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-```
+
 Below are the 2 images after going through this process:
 
 ## Gaussian Blur
 This step involves using Gaussian blur (smoothing) for edge detection. Most edge-detection algorithms are sensitive to noise and using Gaussian blur filter before edge detection aims to reduce the level of noise in the image, which improves the result of the following edge-detection algorithm. Later in our pipeline we use Canny edge detection algorithm which also applies Gaussian blur but we apply our own Gaussian blur to reduce the noise. 
 Choose Kernel_size an odd number, larger kernel size implies averaging or smoothing over larger area. Based on my experiments, I have chosen Kernel size as 7.
-``` 
-kernel_size = 7
-blur_gray = cv2.GaussianBlur(gray, (kernel_size, kernel_size), 0)
-```
+
 Below are the images after applying Gaussian blur to grayscale images:
 
 ## Canny Edge Detection
@@ -41,22 +34,12 @@ Canny Edge Detection is a popular edge detection algorithm developed to detect e
 A nice read on Canny edge detection can be found [here](https://en.wikipedia.org/wiki/Canny_edge_detector)
 
 Canny recommendation for low threshold to high threshold a low to high ratio of 1:2 or 1:3. I have chosen 50 and 150 as low and high thresholds.
-``` 
-low_threshold = 50
-high_threshold = 150
-edges = canny(blur_gray, low_threshold, high_threshold)
-```
+
 Below are the images after passing through Canny edge detection:
 
 ## Region of Interest selection
 Once we have the image from canny edge detection, we can only consider pixels for color selection in the region where we expect to find the lane lines. This is done by applying a quadrilateral mask on the edge detected image using opencv [fillPoly](https://docs.opencv.org/3.0-beta/modules/imgproc/doc/drawing_functions.html#fillpoly) and [bitwise_and](https://docs.opencv.org/2.4/modules/core/doc/operations_on_arrays.html).
-``` 
-#filling pixels inside the polygon defined by "vertices" with the fill color    
-cv2.fillPoly(mask, vertices, ignore_mask_color)
-    
-#returning the image only where mask pixels are nonzero
-masked_image = cv2.bitwise_and(img, mask)
-```
+
 Below are the images after  applying a quadrilateral mask to edge detected image:
 
 ## Hough Line Transform
@@ -70,40 +53,13 @@ theta = np.pi/180 # angular resolution in radians
 threshold = 10     # minimum number of votes 
 min_line_length = 2 #minimum number of pixels making the line
 max_line_gap = 2    # maximum gap in pixels between connectable line segments
-line_image = np.copy(image)*0 
-lines = cv2.HoughLinesP(img, rho, theta, threshold, np.array([]), minLineLength=min_line_len, maxLineGap=max_line_gap)
 ```
 Once fine-tuned the parameters, you can now see the line segments on the images as seen below:
 
 ## Averaging line segments
 Once we have the Hough Transform image from the above step, our goal is to produce only two lines representing the left and right lanes. This can be done by averaging the lines detected on a lane line. We also need to extrapolate the line to cover full lane line length where the lane lines are partially recognized.
 We start by dividing the lines into two groups left and right, with left line having a negative slope and right line having a positive slope and adding weight to lines.
-```
-for line in lines:
-        for x1,y1,x2,y2 in line:
-            #calculate slope of a line
-            a = float((y2-y1)/(x2-x1))
-            #from y=ax+b, b (y intercept) = y-ax
-            b = (y1-a*x1) 
-            #length of line
-            length = math.sqrt(pow(y2-y1,2)+pow(x2-x1,2))
-            if a!=0:
-                if (a > -1.5) and (a < -0.3) :
-                    cumLengthLeft += pow(length,2)
-                    a_left += a * pow(length,2)
-                    b_left += b * pow(length,2)
-                else:
-                    cumLengthRight += pow(length,2)
-                    a_right += a * pow(length,2)
-                    b_right += b * pow(length,2)
-if (cumLengthLeft != 0) :                     
-    a_left /= cumLengthLeft    
-    b_left /= cumLengthLeft    
-     
-if (cumLengthRight != 0)  :
-    a_right /= cumLengthRight
-    b_right /= cumLengthRight 
-```
+
 Once we collect all the negative slope lines and positive slope lines, we can take an average to get the left and right line parameters to calculate x coordinates (left and right) using the equation x=(y-b/a)
 ```
 x1_left = int((y_max-b_left)/a_left)
@@ -114,18 +70,13 @@ x2_right = int((y_min-b_right)/a_right)
 
 ## Drawing lines on lanes
 Once we have the entire x and y coordinates for left and right lanes from the above step, we can use opencv line function to draw lines on left and right lanes. 
-```
-cv2.line(img, (x1_left, y_max), (x2_left, y_min), color, thickness)
-cv2.line(img, (x1_right, y_max), (x2_right, y_min), color, thickness)
-```
+
 Below are the images after passing through the line function:
 
 ## Adding (Blending) images
 Our final step in the pipeline is to add the image from the previous step to the original 3 channel image to get a final image with lane lines. This can be achieved by using opencv addWeighted function.
 A good read can be found [here](https://docs.opencv.org/2.4/modules/core/doc/operations_on_arrays.html?highlight=addweighted#addweighted)
-```
-cv2.addWeighted(initial_img, α, img, β, γ)
-```
+
 Below are the final images with lane lines
 
 
