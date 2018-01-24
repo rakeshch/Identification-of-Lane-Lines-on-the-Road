@@ -1,5 +1,7 @@
 # Project: Finding Lane Lines on the Road
 
+[![Alt text]](https://youtu.be/AAGeOkX1CH8)
+
 In this project, I used Python and OpenCV to build a pipeline that detects lane lines on road images and eventually applying the pipeline to video (frames) that has roads with lane lines.
 
 Below are the steps involved in the pipeline:
