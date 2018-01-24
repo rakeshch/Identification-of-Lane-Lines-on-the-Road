@@ -63,7 +63,7 @@ This function takes multiple parameters as inputs and need to be tunes to get th
 rho = 1 # distance resolution in pixels 
 theta = np.pi/180 # angular resolution in radians
 threshold = 10     # minimum number of votes 
-min_line_length = 2 #minimum number of pixels making the line
+min_line_length = 20 #minimum number of pixels making the line
 max_line_gap = 2    # maximum gap in pixels between connectable line segments
 ```
 Once fine-tuned the parameters, you should see the line segments on the image
