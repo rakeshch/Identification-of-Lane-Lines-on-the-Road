@@ -2,7 +2,7 @@
 
 
 
-In this project, I used Python and OpenCV to build a pipeline that detects lane lines on road images and eventually applying the pipeline to video (frames) that has roads with lane lines. Final video can be seen [here](https://youtu.be/AAGeOkX1CH8)
+In this project, I used Python and OpenCV to build a pipeline that detects lane lines on road images and eventually applying the pipeline to video (frames) that has roads with lane lines.
 
 Below are the steps involved in the pipeline:
 1. Reading an image
@@ -14,6 +14,8 @@ Below are the steps involved in the pipeline:
 7. Averaging line segments
 8. Drawing lines on lanes
 9. Adding (Blending) images
+
+Running the pipeline on the videos [here](https://youtu.be/AAGeOkX1CH8) and [here](https://youtu.be/cya2DbyEZoY).  
 
 ## Reading an image
 This step involves reading an image from the working directory
