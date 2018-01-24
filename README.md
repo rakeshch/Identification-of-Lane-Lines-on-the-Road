@@ -18,13 +18,13 @@ This step involves reading an image from the working directory
 
 Below is the images I will be using for testing my code as I move forward in the pipeline:
 
-![Screenshot](![Screenshot](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/test_images/solidWhiteRight.jpg))
+![Screenshot](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/test_images/solidWhiteRight.jpg)
 
 ## Conversion of image to grayscale
 Once you read the image, convert the image to grayscale to simplify the image processing. It is relatively easier to deal with a single color channel (shades of white/black) than multiple color channels. 
 
 Below is the gray image after going through this process:
-![Screenshot](![Screenshot](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/Pipeline%20images/solidWhiteRight_gray.jpg))
+![Screenshot](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/Pipeline%20images/solidWhiteRight_gray.jpg)
 
 ## Gaussian Blur
 This step involves using Gaussian blur (smoothing) for edge detection. Most edge-detection algorithms are sensitive to noise and using Gaussian blur filter before edge detection aims to reduce the level of noise in the image, which improves the result of the following edge-detection algorithm. Canny edge detection (in next step) includes a Gaussian filter internally, but we also do it again for further smoothing or nose reduction. 
@@ -32,7 +32,7 @@ This step involves using Gaussian blur (smoothing) for edge detection. Most edge
 Choose Kernel_size an odd number, larger kernel size implies averaging or smoothing over larger area. Based on my experiments, I have chosen Kernel size as 7.
 
 Below is the image after applying Gaussian blur to grayscale images:
-![Screenshot](![Screenshot](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/Pipeline%20images/solidWhiteRight_blur_gray.jpg))
+![Screenshot](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/Pipeline%20images/solidWhiteRight_blur_gray.jpg)
 
 ## Canny Edge Detection
 Canny Edge Detection is a popular edge detection algorithm developed to detect edges in an image. Output of this process is a binary image with white pixels tracing out the detected edges (strong gradient) and black everywhere else.
@@ -41,13 +41,13 @@ A nice read on Canny edge detection can be found [here](https://en.wikipedia.org
 Canny recommendation for low threshold to high threshold a low to high ratio of 1:2 or 1:3. I have chosen 50 and 150 as low and high thresholds.
 
 Below is the image after passing through Canny edge detection:
-![Screenshot](![Screenshot](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/Pipeline%20images/solidWhiteRight_edges.jpg))
+![Screenshot](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/Pipeline%20images/solidWhiteRight_edges.jpg)
 
 ## Region of Interest selection
 Once we have the image from canny edge detection, we can only consider pixels for color selection in the region where we expect to find the lane lines. This is done by applying a quadrilateral mask on the edge detected image using opencv [fillPoly](https://docs.opencv.org/3.0-beta/modules/imgproc/doc/drawing_functions.html#fillpoly) and [bitwise_and](https://docs.opencv.org/2.4/modules/core/doc/operations_on_arrays.html).
 
 Below is the image after  applying a quadrilateral mask to edge detected image:
-![Screenshot](![Screenshot](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/Pipeline%20images/solidWhiteRight_masked_edges.jpg))
+![Screenshot](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/Pipeline%20images/solidWhiteRight_masked_edges.jpg)
 
 ## Hough Line Transform
 With all the edges detected and selecting our region of interest to mark lanes, we can now use Hough Line Transform to detect straight lines.
@@ -77,14 +77,14 @@ Once we collect all the negative slope lines and positive slope lines, we can ta
 Once we have the entire x and y coordinates for left and right lanes from the above step, we can use opencv line function to draw lines on left and right lanes. 
 
 Below is the image after passing through the line function:
-![Screenshot](![Screenshot](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/Pipeline%20images/solidWhiteRight_lines.jpg))
+![Screenshot](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/Pipeline%20images/solidWhiteRight_lines.jpg)
 
 ## Adding (Blending) images
 Our final step in the pipeline is to add the image from the previous step to the original 3 channel image to get a final image with lane lines. This can be achieved by using opencv addWeighted function.
 A good read can be found [here](https://docs.opencv.org/2.4/modules/core/doc/operations_on_arrays.html?highlight=addweighted#addweighted)
 
 Below is the final image with lane lines:
-![Screenshot](![Screenshot](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/Pipeline%20images/solidWhiteRight_combined.jpg))
+![Screenshot](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/Pipeline%20images/solidWhiteRight_combined.jpg)
 
 ## Potential shortcomings with my pipeline
 One potential shortcoming would be that the above pipeline works fine on straigh lines in the test_images but issues are detected when there are curved lane lines. 
