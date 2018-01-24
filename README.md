@@ -17,7 +17,8 @@ Below are the steps involved in the pipeline:
 This step involves reading an image from the working directory
 
 Below are the 2 images I will be using for testing my code as I move forward in the pipeline:
-![ScreenShot](Pipleline images/solidWhiteRight_gray.jpg)
+
+![Screenshot](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/Pipeline%20images/solidWhiteRight_gray.jpg)
 
 ## Conversion of image to grayscale
 Once you read the image, convert the image to grayscale to simplify the image processing. It is relatively easier to deal with a single color channel (shades of white/black) than multiple color channels. 
