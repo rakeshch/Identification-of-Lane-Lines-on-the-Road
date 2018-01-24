@@ -94,5 +94,5 @@ Below is the final image with lane lines:
 One potential shortcoming would be that the above pipeline works fine on straigh lines in the test_images but issues are detected when there are curved lane lines. 
 
 ## Suggest possible improvements to my pipeline
-A possible improvement would be to work with the help of [this](http://airccj.org/CSCP/vol5/csit53211.pdf) research paper goes into how to detect curves and will also help in detecting faded lanes. It uses an extended version of hough lines algorithm to detect tangents to the curve which can help you detect the curve..
+A possible improvement would be to work with the help of [this](https://github.com/rakeshch/Finding-Lane-Lines-on-the-Road/blob/master/Improvements/HoughLines_curves.pdf) research paper goes into how to detect curves and will also help in detecting faded lanes. It uses an extended version of hough lines algorithm to detect tangents to the curve which can help you detect the curve..
 
