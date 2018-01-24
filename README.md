@@ -18,6 +18,12 @@ This step involves reading an image from the working directory
 
 Below are the 2 images I will be using for testing my code as I move forward in the pipeline:
 
+<figure>
+ <img src="Pipeline Images/solidWhiteRight_gray.jpg" width="380" alt="Combined Image" />
+ <figcaption>
+ <p></p>  
+</figure>
+
 ## Conversion of image to grayscale
 Once you read the image, convert the image to grayscale to simplify the image processing. It is relatively easier to deal with a single color channel (shades of white/black) than multiple color channels. 
 
