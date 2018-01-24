@@ -94,5 +94,5 @@ Below is the final image with lane lines:
 One potential shortcoming would be that the above pipeline works fine on straigh lines in the test_images but issues are detected when there are curved lane lines. 
 
 ## Suggest possible improvements to my pipeline
-A possible improvement would be to work on  an image that is masked to detect yellow and white lane lines before detecting edges, probably by converting RGB image to another color space (HSV or HSL) before converting to gray scale. Other possible improvements could be creating a lane line classifier that identifies lane lines based on the predefined features for lane lines.
+A possible improvement would be to work with the help of [this](http://airccj.org/CSCP/vol5/csit53211.pdf) research paper goes into how to detect curves and will also help in detecting faded lanes. It uses an extended version of hough lines algorithm to detect tangents to the curve which can help you detect the curve..
 
