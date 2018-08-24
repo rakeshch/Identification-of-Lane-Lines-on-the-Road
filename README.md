@@ -11,7 +11,7 @@ There are two ways to get up and running:
 1. Anaconda
 2. Docker
 
-We recommend you first try setting up your environment with Anaconda. It's faster to get up and running and has fewer moving parts.
+I recommend you first try setting up your environment with Anaconda. It's faster to get up and running and has fewer moving parts.
 
 If the Anaconda installation gives you trouble, try Docker instead.
 
