@@ -49,7 +49,7 @@ and check that the install worked:
 >python
 >>>import moviepy
 
-## Step 4: Opening the code in a Jupyter Notebook
+### Step 4: Opening the code in a Jupyter Notebook
 
 Now that everything is installed, let's make sure it's working!
 
