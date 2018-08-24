@@ -23,12 +23,12 @@ Follow the instructions in this [README](https://github.com/udacity/CarND-Term1-
 
 Once you have Anaconda installed, run the following command at the terminal prompt to get OpenCV:
 
-> conda install -c https://conda.anaconda.org/menpo opencv3
+>conda install -c https://conda.anaconda.org/menpo opencv3
 
 Make sure to test if OpenCV is installed correctly:
 
-> python
->>> import cv2
+>python
+>>>import cv2
 
 ### Step 3: Installing ffmpeg
 
@@ -45,8 +45,8 @@ To install moviepy run:
 
 and check that the install worked:
 
-> python
->>> import moviepy
+>python
+>>>import moviepy
 
 ## Step 4: Opening the code in a Jupyter Notebook
 
@@ -56,8 +56,8 @@ Clone and navigate to the project repository.
 
 Launch the Jupyter notebook with Anaconda. 
 
-> activate yourEnvironment
-> jupyter notebook P1.ipynb
+>activate yourEnvironment
+>jupyter notebook P1.ipynb
 
 Go to http://localhost:8888/notebooks/P1.ipynb in your browser and run all the cells. Everything should execute without error.
 
