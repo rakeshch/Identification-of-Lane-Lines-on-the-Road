@@ -4,23 +4,62 @@ In this project, I used Python and OpenCV (Open-Source Computer Vision) to build
 
 ## Starter Kit Installation
 
-To do this project, you will need Python 3 along with the numpy, matplotlib, and OpenCV libraries, as well as Jupyter Notebook installed.
+### Step 1: Setup Python 
+
+To do this project, you will need Python along with the numpy, matplotlib, and OpenCV libraries, as well as Jupyter Notebook installed.
 
 There are two ways to get up and running:
 
 1. Anaconda
 2. Docker
 
-I recommend you first try setting up your environment with Anaconda. It's faster to get up and running and has fewer moving parts.
+I recommend you first try setting up your environment with Anaconda. It's faster to get up and running and has fewer moving parts. It comes prepackaged with many of the Python dependencies you will need for this and future projects, makes it easy to install OpenCV, and includes Jupyter Notebook
 
 If the Anaconda installation gives you trouble, try Docker instead.
 
 Follow the instructions in this [README](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md).
 
+### Step 2: Install OpenCV
+
+Once you have Anaconda installed, run the following command at the terminal prompt to get OpenCV:
+
+> conda install -c https://conda.anaconda.org/menpo opencv3
+
+Make sure to test if OpenCV is installed correctly:
+
+> python
+>>> import cv2
+
+### Step 3: Installing ffmpeg
+
 If you don't have ffmpeg installed on your computer you'll have to install it for moviepy to work. If this is the case you'll be prompted by an error in the notebook. You can easily install ffmpeg by running the following in a code cell in the notebook.
 
 import imageio
 imageio.plugins.ffmpeg.download()
+
+OR
+
+To install moviepy run:
+
+>pip install moviepy
+
+and check that the install worked:
+
+> python
+>>> import moviepy
+
+## Step 4: Opening the code in a Jupyter Notebook
+
+Now that everything is installed, let's make sure it's working!
+
+Clone and navigate to the project repository.
+
+Launch the Jupyter notebook with Anaconda. 
+
+> activate yourEnvironment
+> jupyter notebook P1.ipynb
+
+Go to http://localhost:8888/notebooks/P1.ipynb in your browser and run all the cells. Everything should execute without error.
 
 ## Project pipeline:
 
