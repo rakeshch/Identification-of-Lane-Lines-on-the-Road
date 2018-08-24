@@ -17,6 +17,11 @@ If the Anaconda installation gives you trouble, try Docker instead.
 
 Follow the instructions in this [README](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md).
 
+If you don't have ffmpeg installed on your computer you'll have to install it for moviepy to work. If this is the case you'll be prompted by an error in the notebook. You can easily install ffmpeg by running the following in a code cell in the notebook.
+
+import imageio
+imageio.plugins.ffmpeg.download()
+
 ## Project pipeline:
 
 1. Reading an image
