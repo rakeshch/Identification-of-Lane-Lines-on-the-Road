@@ -57,6 +57,7 @@ Clone and navigate to the project repository.
 Launch the Jupyter notebook with Anaconda. 
 
 >activate yourEnvironment
+
 >jupyter notebook P1.ipynb
 
 Go to http://localhost:8888/notebooks/P1.ipynb in your browser and run all the cells. Everything should execute without error.
