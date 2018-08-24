@@ -2,7 +2,22 @@
 
 
 
-In this project, I used Python and OpenCV to build a pipeline that detects lane lines on road images and eventually applying the pipeline to video (frames) that has roads with lane lines.
+In this project, I used Python and OpenCV (Open-Source Computer Vision) to build a pipeline that detects lane lines on road images and eventually applying the pipeline to video (frames) that has roads with lane lines.
+
+Step 1: Getting setup with Python
+
+To do this project, you will need Python 3 along with the numpy, matplotlib, and OpenCV libraries, as well as Jupyter Notebook installed.
+
+There are two ways to get up and running:
+
+1. Anaconda
+2. Docker
+
+We recommend you first try setting up your environment with Anaconda. It's faster to get up and running and has fewer moving parts.
+
+If the Anaconda installation gives you trouble, try Docker instead.
+
+Follow the instructions in this [README](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md).
 
 Below are the steps involved in the pipeline:
 1. Reading an image
